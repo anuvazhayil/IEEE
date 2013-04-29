@@ -1,0 +1,102 @@
+Introduction to Tables in Latex
+
+Table
+
+Let me start with the table-stub and later on explain how to fill in the actual table content. Most of the Latex editors provide a macro, which is usually helpful as it directly inserts the basic stub usually including a few rows and columns of the table. The macro provided by LED is the following code:
+1
+2
+3
+4
+5
+6
+7
+8
+	
+\begin{table}[t]
+\centering
+\begin{tabular}{}
+%table content
+\end{tabular}
+\caption{}
+\label{tab:label}
+\end{table}
+
+There is an optional argument which determines where Latex places the table. Available placements are:
+
+h (here), t (top), b (bottom) and p (page of floats).
+
+Caption and label are the same commands used when including figures. Caption is the explanation displayed below or above the table, depending on where you insert it, before or after the tabular. The label is used for reference in the text. It is a Latex convention to start table references by “tab:”, which no only lets you use the same name for a figure (starting with fig:) and a table, but makes it easier to distinguish between figures and tables. Use the command \ref{tab:} to reference a table in the text.
+
+Tabular
+
+The tabular environment produces a box consisting of a sequence of rows aligned vertically in columns. The complete tabular environment takes 3 arguments:
+1
+	
+\begin{tabular}{width}[pos]{cols}
+
+The first argument fixes the width of the whole tabular environment.Filling the content is not difficult, once you got the idea. Columns are separated by “&” and rows by “\\”.
+
+Example 1:
+1
+	
+entry 1 & entry 2 & entry 3 & entry4 \\
+
+You have to tell Latex in the beginning how many columns you will be using. This is done by adding l’s (align left), c’s (align center) and r’s (align right) in addition to |’s (vertical bar for cell separation) as the argument of the command tabular.
+
+Example 2:
+
+In order to generate a table with four horizontal cells as in example 1, one would use
+1
+	
+\begin{tabular}{|c|c|c|c|}
+
+c can be substituted by l and r.
+
+It is also possible to use different alignments for different cells. Just make sure that are as many c’s, l’s and r’s as there are column entries, otherwise Latex will complain. For leaving a cell empty, just use “& &”. The number of &’s has to be equal to the number of c’s/r’s/l’s -1.
+
+There are a certain number of other options available, which I will not discuss here, as they are quite specific. You can find the complete command reference for tabular here.
+
+In order to horizontally separate the cells, just use \hline, which inserts a line as wide as the table. The size of the table is determined automatically, depending on the number of cells as well as the content.
+
+Example 3:
+
+Here is the code for a complete table, which can be used as a template for your tables, just copy-paste the code into your tex-file:
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+	
+\begin{table}[t]
+\centering
+\begin{tabular}{|l|c|c|c|c|c|}
+\hline
+Product & 1 & 2 & 3 & 4 & 5\\
+\hline
+Price & 124.- & 136.- & 85.- & 156.- & 23.-\\
+Guarantee [years] & 1 & 2 & - & 3 & 1\\
+Rating & 89\% & 84\% & 51\% & & 45\%\\
+\hline
+\hline
+Recommended & yes & yes & no & no & no\\
+\hline
+\end{tabular}
+\caption{This is a table template}
+\label{tab:template}
+\end{table}
+
+Table \ref{tab:template} gives an example of how to write a table in Latex.Generating the PDF should produce thefollowing table.
+
+
